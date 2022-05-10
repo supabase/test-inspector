@@ -1,0 +1,53 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Upload",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}",
+      "args": [
+        "upload",
+        "-u",
+        "your_email",
+        "-w",
+        "your_password",
+        "-v",
+        "0",
+        "-l",
+        "local-launch-123",
+        "-f",
+        "./allure-results"
+      ]
+    },
+    {
+      "name": "Inspect",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}",
+      "args": [
+        "inspect",
+        "-v",
+        "0",
+        "-f",
+        "./allure-results"
+      ]
+    },
+    {
+      "name": "Print",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}",
+      "args": [
+        "print",
+        "-v",
+        "0",
+        "-f",
+        "./allure-results"
+      ]
+    }
+  ]
+}
