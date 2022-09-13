@@ -1,12 +1,15 @@
 <template>
   <div class="w-full my-12">
     <div class="flex justify-between">
-      <h1 class="mb-24 mt-12 text-6xl font-bold u-text-black">
-        Versions.
-      </h1>
+      <h1 class="mb-24 mt-12 text-6xl font-bold u-text-black">Versions.</h1>
       <div>
         <nuxt-link to="/">
-          <UButton icon="heroicons-solid:arrow-circle-left" class="u-text-black" size="xl" variant="transparent" />
+          <UButton
+            icon="heroicons-solid:arrow-circle-left"
+            class="u-text-black"
+            size="xl"
+            variant="transparent"
+          />
         </nuxt-link>
       </div>
     </div>
@@ -19,12 +22,7 @@
           class="mx-12 my-12 w-5/12 h-96 min-w-[480px]"
         />
       </div>
-      <transition
-        v-else
-        name="bounce"
-        mode="out-in"
-        appear
-      >
+      <transition v-else name="bounce" mode="out-in" appear>
         <ul class="px-12 flex justify-center flex-wrap">
           <li
             v-for="v of versions"
@@ -40,24 +38,36 @@
                 :label="v.version_name"
                 :name="v.id"
               >
-                <div :class="`flex items-center justify-between ${v.is_template_launch ? 'underline text-emerald-500' : 'u-text-gray-700'} mb-5`">
-                  <h5 class="font-bold text-2xl tracking-tight mb-2 flex justify-between w-full">
+                <div
+                  :class="`flex items-center justify-between ${
+                    v.is_template_launch
+                      ? 'underline text-emerald-500'
+                      : 'u-text-gray-700'
+                  } mb-5`"
+                >
+                  <h5
+                    class="font-bold text-2xl tracking-tight mb-2 flex justify-between w-full"
+                  >
                     <div>
                       <span>
                         {{ v.version_name }}
                       </span>
                     </div>
                     <div>
-                      <span class="u-text-gray-700 text-sm">
-                        #{{ v.id }}
-                      </span>
+                      <span class="u-text-gray-700 text-sm"> #{{ v.id }} </span>
                     </div>
                   </h5>
                 </div>
-                <p class="font-sm u-text-gray-700 mb-3 min-h-full">
-                  last launch: {{ (new Date(Date.parse(v.last_launch_at))).toLocaleString() }}
-                </p>
-                <p class="font-normal text-sm u-text-gray-700 mb-3 inline-flex flex-row justify-between w-full">
+                <NuxtLink
+                  :to="`/projects/${$route.params.id}/versions/${v.id}`"
+                  class="text-emerald-500 hover:text-emerald-600"
+                >
+                  last launch:
+                  {{ new Date(Date.parse(v.last_launch_at)).toLocaleString() }}
+                </NuxtLink>
+                <p
+                  class="font-normal text-sm u-text-gray-700 mb-3 inline-flex flex-row justify-between w-full"
+                >
                   <span class="inline-flex">
                     <svg
                       class="mr-1"
@@ -72,7 +82,9 @@
                       stroke-linejoin="bevel"
                     >
                       <polyline points="9 11 12 14 22 4" />
-                      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                      <path
+                        d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                      />
                     </svg>
                     passed: {{ v.passed_number ?? 0 }}
                   </span>
@@ -162,7 +174,9 @@ const { data: features } = await useAsyncData('features', async () => {
 })
 
 const { data: templates } = await client.rpc<Result>('results', {
-  version: versions.value.filter(v => v.is_template_launch).map(v => v.id)[0]
+  version: versions.value
+    .filter((v) => v.is_template_launch)
+    .map((v) => v.id)[0],
 })
 </script>
 

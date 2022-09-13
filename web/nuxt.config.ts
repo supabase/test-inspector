@@ -1,21 +1,17 @@
 import { defineNuxtConfig } from 'nuxt'
 
 export default defineNuxtConfig({
-  buildModules: [
-    '@nuxtjs/supabase',
-    '@nuxthq/ui',
-    '@nuxtjs/color-mode'
-  ],
+  buildModules: ['@nuxtjs/supabase', '@nuxthq/ui', '@nuxtjs/color-mode'],
   build: {
-    transpile: ['charts.js', 'vue-chart-3']
+    transpile: ['charts.js', 'vue-chart-3'],
   },
-  ssr: true,
+  ssr: false,
   ui: {
     colors: {
-      primary: 'green'
-    }
+      primary: 'green',
+    },
   },
   server: {
-    port: 4000
-  }
+    port: 4000,
+  },
 })

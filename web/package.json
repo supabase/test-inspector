@@ -17,7 +17,7 @@
     "@nuxtjs/supabase": "^0.1.1",
     "@vueuse/components": "^8.0.1",
     "eslint": "^8.11.0",
-    "nuxt": "^3.0.0-rc.0",
+    "nuxt": "^3.0.0-rc.9",
     "typescript": "^4.6.2"
   },
   "dependencies": {

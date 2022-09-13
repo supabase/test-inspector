@@ -51,6 +51,8 @@ func convertTests(suite junit.Suite, parentSuite string) []models.AllureResult {
 		if test.Error != nil {
 			msg = msg + "\n" + test.Error.Error()
 		}
+		labels := suiteLabels(suite, parentSuite)
+
 		ar := models.AllureResult{
 			Name:   test.Name,
 			Status: string(test.Status),
@@ -70,17 +72,9 @@ func convertTests(suite junit.Suite, parentSuite string) []models.AllureResult {
 			Stop:     test.Duration.Milliseconds(),
 			UUID:     uuid.New(),
 			FullName: &test.Classname,
-			Labels: []*models.Label{
-				{
-					Name:  "suite",
-					Value: suite.Name,
-				},
-				{
-					Name:  "parentSuite",
-					Value: parentSuite,
-				},
-			},
+			Labels:   labels,
 		}
+
 		for k, v := range test.Properties {
 			ar.Labels = append(ar.Labels, &models.Label{
 				Name:  k,
@@ -93,4 +87,36 @@ func convertTests(suite junit.Suite, parentSuite string) []models.AllureResult {
 		res = append(res, convertTests(s, suite.Name)...)
 	}
 	return res
+}
+
+func suiteLabels(suite junit.Suite, parentSuite string) []*models.Label {
+	if len(suite.Name) > 0 && suite.Name[0] == '.' {
+		return flutterLabels(suite, parentSuite)
+	}
+	return []*models.Label{
+		{
+			Name:  "suite",
+			Value: suite.Name,
+		},
+		{
+			Name:  "parentSuite",
+			Value: parentSuite,
+		},
+	}
+}
+
+func flutterLabels(suite junit.Suite, parentSuite string) []*models.Label {
+	splittedName := strings.Split(suite.Name, ".")
+	name := splittedName[len(splittedName)-1]
+
+	return []*models.Label{
+		{
+			Name:  "suite",
+			Value: name,
+		},
+		{
+			Name:  "parentSuite",
+			Value: suite.Package,
+		},
+	}
 }
