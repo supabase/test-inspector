@@ -8,7 +8,7 @@ PACKAGE := "test-inspector"
 VERSION := "$(git describe --tags --always --abbrev=0 --match='v[0-9]*.[0-9]*.[0-9]*' 2> /dev/null | sed 's/^.//')"
 COMMIT_HASH := "$(git rev-parse --short HEAD)"
 BUILD_TIMESTAMP := $(date '+%Y-%m-%dT%H:%M:%S')
-SUPABASE_KEY := ""
+# SUPABASE_KEY := ""
 
 LDFLAGS := -ldflags "-X '${PACKAGE}/cmd.Version=${VERSION}' -X '${PACKAGE}/cmd.CommitHash=${COMMIT_HASH}' -X '${PACKAGE}/cmd.BuildTime=${BUILD_TIMESTAMP}' -X '${PACKAGE}/cmd.SupabaseKey=${SUPABASE_KEY}'"
 LDFLAGS_DEV := -ldflags "-X '${PACKAGE}/cmd.SupabaseKey=${SUPABASE_KEY}'"
