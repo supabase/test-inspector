@@ -328,9 +328,12 @@ function testTree(results) {
   return rootSuite
 }
 
-const { data: launch } = await useAsyncData('launch', async () => {
-  return fetchLaunch()
-})
+const { data: launch } = await useAsyncData(
+  `launch${route.params.versionId}`,
+  async () => {
+    return fetchLaunch()
+  }
+)
 
 const suite = computed(() => {
   return testTree(launch.value.results)
@@ -353,10 +356,10 @@ const setClassTreeLvl = function (lvl) {
 }
 @keyframes bounce-in {
   0% {
-    transform: scale(0);
+    transform: scale(0.8);
   }
   50% {
-    transform: scale(1.25);
+    transform: scale(1.05);
   }
   100% {
     transform: scale(1);

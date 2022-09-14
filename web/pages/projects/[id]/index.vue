@@ -189,10 +189,10 @@ const { data: templates } = await client.rpc<Result>('results', {
 }
 @keyframes bounce-in {
   0% {
-    transform: scale(0);
+    transform: scale(0.7);
   }
   50% {
-    transform: scale(1.25);
+    transform: scale(1.1);
   }
   100% {
     transform: scale(1);
