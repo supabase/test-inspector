@@ -44,3 +44,21 @@ This project is built with:
 - backend: <https://supabase.com>
 - cli: `go 1.18`, `cobra`, `go-junit`, `supabase-go`
 - web-gui: `node`, `nuxt`, `supabase-js`, deployed to `fly`
+
+## How to use in your process
+
+1. Take a look at the existing project at <https://test-inspector.fly.dev/projects/1>
+
+   - You can select the reference version (supabase-js currently) and check out what tests are currently passing for it (<https://test-inspector.fly.dev/projects/1/versions/2>)
+
+2. Download the latest version of the CLI app from <https://github.com/supabase/test-inspector/suites/8289986777/artifacts/363373298>
+
+   - When you download it on MacOS, you may need to allow it to run. You can do it by right-clicking on the file with Ctrl and selecting `Open` from the context menu.
+
+3. Run the CLI app with `./test-inspector -v 2 print` command to see the detailed test results for the reference version of the library (you can find the version ID on the test-inspector website). You will also see steps for each test case so you can make your tests as close as possible to the reference version.
+
+4. To upload your test results to test-inspector you need your test runner to generate testrun report in `allure` (<https://docs.qameta.io/allure/>) or `junit` (<https://www.ibm.com/docs/en/developer-for-zos/14.1?topic=formats-junit-xml-format>) format. Check out how to do that for your programming language.
+
+5. You can compare your test results with the reference version by running `./test-inspector -v 5 inspect -t junit -f ./path/to/junit.xml` or `./test-inspector -v 5 inspect -f ./path/to/allure-results` command. You will see the comparison chart for each test case and the overall coverage.
+
+6. To upload results to test-inspector you need to register at <https://test-inspector.fly.dev/login>. Find the version ID for a library you are testing (for example Python is #3). And run the following command `./test-inspector -u username@example.com -w $INSPECTOR_PASSWORD -v $VERSION_ID -f ./allure-results upload -l $LAUNCH_NAME`. Or the same command but with a path to `junit` report with `-t junit` option.
