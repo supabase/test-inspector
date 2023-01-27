@@ -19,6 +19,7 @@ func ToResult(launchID int64, r models.AllureResult, steps string) models.SupaRe
 		ParentSuite: parentSuite,
 		SubSuite:    subSuite,
 		Feature:     feature,
+		Labels:      r.Labels,
 		Status:      r.Status,
 		Description: r.Description,
 		LaunchID:    launchID,

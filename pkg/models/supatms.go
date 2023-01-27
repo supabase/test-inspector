@@ -75,6 +75,7 @@ type SupaResult struct {
 	LaunchID    int64     `json:"launch_id"`
 	Duration    int32     `json:"duration"`
 	Steps       string    `json:"steps"`
+	Labels      []*Label  `json:"labels,omitempty"`
 
 	Stps []*StepContainer `json:"-"`
 }
