@@ -14,7 +14,7 @@ Live: <https://test-inspector.fly.dev>
 Make sure to install the dependencies
 
 ```bash
-yarn install
+npm install
 ```
 
 Fill the `.env` with the Supabase environment variables:
@@ -31,7 +31,7 @@ SUPABASE_KEY="<your_key>"
 Start the development server on <http://localhost:3000>
 
 ```bash
-yarn dev
+npm run dev
 ```
 
 ## Production
@@ -39,7 +39,7 @@ yarn dev
 Build the application for production:
 
 ```bash
-yarn build
+npm run build
 ```
 
 Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).

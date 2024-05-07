@@ -4,16 +4,16 @@ WORKDIR /app
 
 COPY . .
 
-RUN yarn install \
+RUN npm install \
   --prefer-offline \
   --frozen-lockfile \
   --non-interactive \
   --production=false
 
-RUN yarn build
+RUN npm run build
 
 RUN rm -rf node_modules && \
-  NODE_ENV=production yarn install \
+  NODE_ENV=production npm install \
   --prefer-offline \
   --pure-lockfile \
   --non-interactive \
