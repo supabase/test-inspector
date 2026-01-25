@@ -12,9 +12,9 @@ jobs:
     name: Test
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-go@v2
+      - uses: actions/setup-go@v6
         with:
           go-version: 1.18
 
@@ -24,9 +24,9 @@ jobs:
     name: Lint
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-go@v2
+      - uses: actions/setup-go@v6
         with:
           go-version: 1.18
 
@@ -38,9 +38,9 @@ jobs:
     name: Build
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-go@v2
+      - uses: actions/setup-go@v6
         with:
           go-version: 1.18
 
@@ -48,7 +48,7 @@ jobs:
         env:
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v6
         if: ${{ always() }}
         with:
           name: bin
