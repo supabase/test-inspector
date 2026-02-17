@@ -1,6 +1,5 @@
 /*
 Copyright © 2022 Egor Romanov egor@supabase.io
-
 */
 package main
 

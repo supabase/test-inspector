@@ -1,7 +1,6 @@
 /*
 Package cmd contains all the commands that are available in the test-inspector CLI.
 Copyright © 2022 Egor Romanov egor@supabase.io
-
 */
 package cmd
 

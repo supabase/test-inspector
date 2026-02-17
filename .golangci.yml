@@ -8,7 +8,6 @@ linters:
     - lll
     - misspell
     - nakedret
-    - revive
     - unconvert
   disable:
     - bodyclose
@@ -16,13 +15,31 @@ linters:
     - staticcheck
     - unparam
     - unused
+    - revive
   settings:
-    govet:
-      enable-all: true
+    gosec:
+      excludes:
+        - G109
+        - G115
+        - G601
     gocyclo:
       min-complexity: 16
     lll:
       line-length: 200
+    depguard:
+      rules:
+        main:
+          allow:
+            - $gostd
+            - github.com/supabase/postgrest-go
+            - test-inspector/cmd
+            - test-inspector/pkg
+            - test-inspector/internal
+            - github.com/google/go-querystring
+            - github.com/google/uuid
+            - github.com/spf13/cobra
+            - github.com/spf13/viper
+            - github.com/joshdk/go-junit
 
   exclusions:
     generated: lax
